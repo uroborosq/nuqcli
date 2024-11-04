@@ -127,6 +127,17 @@ func main() {
 		panic(err)
 	}
 
+	conns, err := manager.GetPropertyActiveConnections()
+	if err != nil {
+		panic(err)
+	}
+
+	for _, conn := range conns {
+		fmt.Println(conn.GetPropertyVPN())
+		fmt.Println(conn.GetPath())
+		fmt.Println(conn.GetPropertyID())
+	}
+
 	devices, err := manager.GetAllDevices()
 	if err != nil {
 		panic(err)
@@ -136,6 +147,7 @@ func main() {
 		fmt.Println(casted)
 		fmt.Printf("%T\n", device)
 		fmt.Println(device.GetPropertyInterface())
+		fmt.Println(device.GetPropertyDeviceType())
 	}
 
 	// program := tea.NewProgram(NewModel())
